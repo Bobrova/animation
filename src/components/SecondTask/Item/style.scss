@@ -3,12 +3,12 @@
   align-items: center;
   width: 100%;
   margin: 5px auto;
-  color: white;
+  color: #d6e6e1;
 }
 
 .personBlock {
   display: flex;
-  flex-basis: 1em;
+  flex-basis: 1px;
   line-height: 3.5em;
   border-radius: 1px;
   margin-right: 10px;
@@ -24,15 +24,15 @@
 }
 
 .stepsBlock {
-  width: 100px;
   display: flex;
   flex-direction: column;
+  width: 100px;
   height: 100%;
   white-space: nowrap;
 }
 
 .source {
-  font-size: 0.8em;
+  font-size: 14px;
   line-height: 1.4em;
   opacity: 0;
 }

@@ -31,6 +31,7 @@ class ListItem extends Component {
       source,
       id,
     } = this.props;
+
     const { widthPersonalBlock, opacity, borderRadius } = this.state;
     const stepsNamber = Math.round(+steps);
     let color = '#236840';
@@ -40,9 +41,6 @@ class ListItem extends Component {
     return (
       <div
         className={styles.listItem}
-        style={{
-          color: '#d6e6e1',
-        }}
       >
         <div
           className={styles.personBlock}
