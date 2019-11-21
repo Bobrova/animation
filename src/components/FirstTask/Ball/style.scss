@@ -1,0 +1,189 @@
+.ball {
+	width: 4em;
+	height: 4em;
+	border-radius: 50%;
+	background-color: blue;
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-basis: 35%;
+	margin: 15px;
+}
+
+.btn {
+	white-space: nowrap;
+}
+
+.btn:hover {
+  cursor: pointer;
+	text-decoration: underline;
+}
+
+.edgeOfBrowser {
+	animation: edgeOfBrowserAnimation 2s linear;
+}
+
+.changeColor {
+	animation: changeColorAnimation 2s linear;
+}
+
+.flash {
+	animation: flashAnimation 2s linear;
+}
+
+.headShake {
+	animation: headShakeAnimation 1.5s linear;
+}
+
+.swing {
+	transform-origin: top center;
+	animation: swingAnimation 1s linear;
+}
+
+.heartBeat {
+	animation: heartBeatAnimation 1.3s linear;
+}
+
+.flip {
+	backface-visibility: visible;
+	animation: flipAnimation 1.3s linear;
+}
+
+.fadeOut {
+	animation: fadeOutAnimation 2.5s linear;
+}
+
+.fadeIn {
+	animation: fadeInAnimation 2.5s linear;
+}
+
+.fadeOutRight {
+	animation: fadeOutRightAnimation 2.5s linear;
+}
+
+.fadeInLeft {
+	animation: fadeInLeftAnimation 2.5s linear;
+}
+
+@keyframes fadeOutRightAnimation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes fadeInLeftAnimation {
+	from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInAnimation {
+  from { opacity: 0 }
+	to { opacity: 1 }
+}
+
+@keyframes fadeOutAnimation {
+  from { opacity: 1 }
+	to { opacity: 0 }
+}
+
+@keyframes flipAnimation {
+  from {
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
+    animation-timing-function: ease-out;
+  }
+
+  40% {
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -190deg);
+    animation-timing-function: ease-out;
+  }
+
+  50% {
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+      rotate3d(0, 1, 0, -170deg);
+    animation-timing-function: ease-in;
+  }
+
+  80% {
+    transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)
+      rotate3d(0, 1, 0, 0deg);
+    animation-timing-function: ease-in;
+  }
+
+  to {
+    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes swingAnimation {
+  20% {transform: rotate3d(0, 0, 1, 15deg) }
+  40% { transform: rotate3d(0, 0, 1, -10deg) }
+	60% { transform: rotate3d(0, 0, 1, 5deg) }
+	80% { transform: rotate3d(0, 0, 1, -5deg) }
+	to { transform: rotate3d(0, 0, 1, 0deg) }
+}
+
+@keyframes heartBeatAnimation {
+  0% {transform: scale(1) }
+  14% { transform: scale(1.3) }
+	28% { transform: scale(1) }
+	42% { transform: scale(1.3) }
+	70% { transform: scale(1) }
+}
+
+@keyframes edgeOfBrowserAnimation {
+  from {transform: translate3d(0, 0, 0) }
+  50% { transform: translate3d(100%, 0, 0) }
+	to { transform: translate3d(0, 0, 0) }
+}
+
+@keyframes changeColorAnimation {
+	from {background-color: blue; }
+	50%,
+	to { background-color: yellow; }
+}
+
+@keyframes flashAnimation {
+	from,
+	50%,
+	to {opacity: 1 }
+
+	25%,
+	75% { opacity: 0 }
+}
+
+@keyframes headShakeAnimation {
+	from,
+	to {
+		transform: translate3d(0, 0, 0)
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: translate3d(-10px, 0, 0)
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: translate3d(10px, 0, 0)
+	}
+}

@@ -1,0 +1,63 @@
+.listItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 5px auto;
+  color: white;
+}
+
+.personBlock {
+  display: flex;
+  flex-basis: 1em;
+  line-height: 3.5em;
+  border-radius: 1px;
+  margin-right: 10px;
+  opacity: 0;
+  transition: all 300ms ease;
+}
+
+.personName {
+  padding-left: 30px;
+  text-align: left;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.stepsBlock {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.source {
+  font-size: 0.8em;
+  line-height: 1.4em;
+  opacity: 0;
+}
+
+.steps {
+  opacity: 0;
+}
+
+.fadeInLeft {
+  animation: fadeInLeftAnimation 500ms linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInLeftAnimation {
+	from {
+    opacity: 0;
+    transform: translate3d(-20%, 0, 0);
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

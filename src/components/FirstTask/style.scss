@@ -1,0 +1,11 @@
+.page {
+	position: relative;
+}
+
+.ballsfield {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	min-width: 490px;
+}

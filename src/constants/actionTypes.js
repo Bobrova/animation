@@ -1,0 +1,2 @@
+export const SET_ANIMATION = 'SET_ANIMATION';
+export const DEL_ANIMATION = 'DEL_ANIMATION';
