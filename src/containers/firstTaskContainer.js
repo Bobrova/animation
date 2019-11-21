@@ -4,9 +4,10 @@ import {
   setAnimationAction,
   delAnimationAction,
 } from 'actions';
+import { activeAnimationSelector } from 'selectors';
 
 const mapStateToProps = state => ({
-  activeAnimation: state.item.animationName,
+  activeAnimation: activeAnimationSelector(state),
 });
 
 export default connect(
