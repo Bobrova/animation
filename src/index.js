@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import App from 'components/App';
 import FirstTaskContainer from 'containers/firstTaskContainer';
 import SecondTask from 'components/SecondTask';
+import ThirdTask from 'components/ThirdTask';
 import { store } from 'store/configureStore';
 
 render(
@@ -24,6 +25,11 @@ render(
         <Route
           path="/second-task"
           component={SecondTask}
+          exact
+        />
+        <Route
+          path="/third-task"
+          component={ThirdTask}
           exact
         />
       </Switch>
