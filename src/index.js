@@ -6,6 +6,7 @@ import App from 'components/App';
 import FirstTaskContainer from 'containers/firstTaskContainer';
 import SecondTask from 'components/SecondTask';
 import ThirdTask from 'components/ThirdTask';
+// import TourthTask from 'components/TourthTask';
 import { store } from 'store/configureStore';
 
 render(
@@ -32,6 +33,11 @@ render(
           component={ThirdTask}
           exact
         />
+        {/* <Route
+          path="/fourth-task"
+          component={TourthTask}
+          exact
+        /> */}
       </Switch>
     </Provider>
   </HashRouter>,

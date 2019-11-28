@@ -13,6 +13,7 @@ const ThirdTask = () => {
       <div className={`${styles.picblock} ${styles.picblock2}`} />
       <div className={`${styles.picblock} ${styles.picblock3}`} />
       <div className={`${styles.picblock} ${styles.picblock4}`} />
+      <div className={`${styles.picblock} ${styles.picblock5}`} />
     </div>
   );
 };

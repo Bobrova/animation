@@ -36,6 +36,12 @@
   &:nth-child(4):hover~ .backblock {
     background-image: url(../../img/8.jpg);
   }
+  &:not(:hover)~ .backblock {
+    background-image: url(../../img/9.jpg);
+  }
+  &:hover~ .picblock5 {
+    opacity: 0;
+  }
 }
 
 .backblock {
@@ -45,8 +51,6 @@
   z-index: -10;
   width: 800px;
   height: 400px;
-  background: url(../../img/9.jpg);
-  transition: background 0.7s linear;
 }
 
 .picblock1 {
@@ -63,6 +67,11 @@
 
 .picblock4 {
   background-image: url(../../img/8.jpg);
+}
+
+.picblock5 {
+  background-image: url(../../img/9.jpg);
+  opacity: 1;
 }
 
 .controlBlock:nth-child(1):hover~ .picblock1 {

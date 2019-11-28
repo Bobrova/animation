@@ -9,6 +9,7 @@ class App extends Component {
         <Link to="/first-task" className={styles.btn}>First Task</Link>
         <Link to="/second-task" className={styles.btn}>Second Task</Link>
         <Link to="/third-task" className={styles.btn}>Third Task</Link>
+        <Link to="/Fourth-task" className={styles.btn}>Third Task</Link>
       </section>
     );
   }
