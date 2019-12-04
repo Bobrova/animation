@@ -24,7 +24,6 @@ class FourthTask extends React.Component {
   }
 
   scroll = (e) => {
-    // window.onWheel = e.preventDefault();s
     const { translate } = this.state;
     let s = e.deltaY || e.detail || e.wheelDelta;
     const widthWrap = this._sliderWrapper.offsetWidth;
@@ -66,10 +65,18 @@ class FourthTask extends React.Component {
     this._sliderWrapper = node;
   }
 
-  eventHandler = (e) => {
+  swipeEventHandler = (e) => {
     const { translate } = this.state;
+    let s = -e.deltaX;
+    const widthWrap = this._sliderWrapper.offsetWidth;
+    if ((Math.abs((translate + s)) > ((countSlides * 300) - widthWrap))) {
+      s = -(((countSlides * 300) - widthWrap) + translate);
+    }
+    if ((translate + s) > 0) {
+      s = -translate;
+    }
     this.setState({
-      translate: translate - e.deltaX,
+      translate: translate + s,
     });
   }
 
@@ -87,7 +94,7 @@ class FourthTask extends React.Component {
     ));
     const config = {
       delta: 10,
-      preventDefaultTouchmoveEvent: true,
+      preventDefaultTouchmoveEvent: false,
       trackTouch: true,
       trackMouse: true,
       rotationAngle: 0,
@@ -95,7 +102,10 @@ class FourthTask extends React.Component {
 
     const { translate } = this.state;
     return (
-      <Swipeable onSwiped={(eventData) => this.eventHandler(eventData)} {...config}>
+      <Swipeable
+        onSwiped={(eventData) => this.swipeEventHandler(eventData)}
+        {...config}
+      >
         <div className={styles.slider}>
           <div
             className={styles.sliderWrapper}
