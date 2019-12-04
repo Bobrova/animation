@@ -1,5 +1,6 @@
 import React from 'react';
 import { slides, countSlides } from 'constants/sliderConstants';
+import { Swipeable } from 'react-swipeable';
 import styles from './style.scss';
 
 class FourthTask extends React.Component {
@@ -23,6 +24,7 @@ class FourthTask extends React.Component {
   }
 
   scroll = (e) => {
+    // window.onWheel = e.preventDefault();s
     const { translate } = this.state;
     let s = e.deltaY || e.detail || e.wheelDelta;
     const widthWrap = this._sliderWrapper.offsetWidth;
@@ -64,8 +66,14 @@ class FourthTask extends React.Component {
     this._sliderWrapper = node;
   }
 
-  render() {
+  eventHandler = (e) => {
     const { translate } = this.state;
+    this.setState({
+      translate: translate - e.deltaX,
+    });
+  }
+
+  render() {
     const slider = slides.map((item, idx) => (
       <div
         key={idx}
@@ -77,27 +85,38 @@ class FourthTask extends React.Component {
         {item.title}
       </div>
     ));
+    const config = {
+      delta: 10,
+      preventDefaultTouchmoveEvent: true,
+      trackTouch: true,
+      trackMouse: true,
+      rotationAngle: 0,
+    };
+
+    const { translate } = this.state;
     return (
-      <div className={styles.slider}>
-        <div
-          className={styles.sliderWrapper}
-          ref={this.getSliderRef}
-          onWheel={this.scroll}
-          style={{
-            transform: `translateX(${translate}px)`,
-          }}
-        >
-          {slider}
+      <Swipeable onSwiped={(eventData) => this.eventHandler(eventData)} {...config}>
+        <div className={styles.slider}>
+          <div
+            className={styles.sliderWrapper}
+            ref={this.getSliderRef}
+            onWheel={this.scroll}
+            style={{
+              transform: `translateX(${translate}px)`,
+            }}
+          >
+            {slider}
+          </div>
+          <div
+            className={`${styles.sliderControl} ${styles.sliderControlLeft}`}
+            onClick={this.handleClickLeft}
+          />
+          <div
+            className={`${styles.sliderControl} ${styles.sliderControlRight}`}
+            onClick={this.handleClickRight}
+          />
         </div>
-        <div
-          className={`${styles.sliderControl} ${styles.sliderControlLeft}`}
-          onClick={this.handleClickLeft}
-        />
-        <div
-          className={`${styles.sliderControl} ${styles.sliderControlRight}`}
-          onClick={this.handleClickRight}
-        />
-      </div>
+      </Swipeable>
     );
   }
 }

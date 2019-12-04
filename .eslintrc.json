@@ -39,6 +39,7 @@
       "no-shadow": "off",
       "import/no-unresolved": "off",
       "react/jsx-boolean-value": "off",
-      "react/no-array-index-key": "off"
+      "react/no-array-index-key": "off",
+      "react/jsx-props-no-spreading": "off"
     }
 }
