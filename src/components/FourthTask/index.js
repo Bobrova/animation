@@ -1,6 +1,7 @@
 import React from 'react';
 import { slides, countSlides } from 'constants/sliderConstants';
 import { Swipeable } from 'react-swipeable';
+import classNames from 'classnames';
 import styles from './style.scss';
 
 class FourthTask extends React.Component {
@@ -65,6 +66,7 @@ class FourthTask extends React.Component {
   }
 
   render() {
+    const { translate } = this.state;
     const slider = slides.map((item, idx) => (
       <div
         key={idx}
@@ -84,7 +86,24 @@ class FourthTask extends React.Component {
       rotationAngle: 0,
     };
 
-    const { translate } = this.state;
+    const leftBorder = (translate === 0);
+    let rightBorder = false;
+    if (translate !== 0) {
+      const widthWrap = this._sliderWrapper.offsetWidth;
+      const widthChild = this._sliderWrapper.children[0].offsetWidth;
+      rightBorder = (Math.abs(translate) === ((countSlides * widthChild) - widthWrap));
+    }
+    const btnClassLeft = classNames(
+      styles.sliderControlLeft,
+      styles.sliderControl,
+      { [styles.btnHidden]: leftBorder },
+    );
+    const btnClassRight = classNames(
+      styles.sliderControlRight,
+      styles.sliderControl,
+      { [styles.btnHidden]: rightBorder },
+    );
+
     return (
       <div className={styles.page}>
         <Swipeable
@@ -103,11 +122,11 @@ class FourthTask extends React.Component {
               {slider}
             </div>
             <div
-              className={`${styles.sliderControl} ${styles.sliderControlLeft}`}
+              className={btnClassLeft}
               onClick={this.handleClickLeft}
             />
             <div
-              className={`${styles.sliderControl} ${styles.sliderControlRight}`}
+              className={btnClassRight}
               onClick={this.handleClickRight}
             />
           </div>
