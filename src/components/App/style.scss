@@ -10,9 +10,11 @@ p {
   min-width: 320px;
   max-width: 1900px;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .btn {
   display: block;
+  width: 50%;
   padding: 10px;
 }
