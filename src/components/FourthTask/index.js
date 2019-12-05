@@ -27,8 +27,9 @@ class FourthTask extends React.Component {
     const { translate } = this.state;
     let s = e.deltaY || e.detail || e.wheelDelta;
     const widthWrap = this._sliderWrapper.offsetWidth;
-    if ((Math.abs((translate + s)) > ((countSlides * 300) - widthWrap))) {
-      s = -(((countSlides * 300) - widthWrap) + translate);
+    const widthChild = this._sliderWrapper.children[0].offsetWidth;
+    if ((Math.abs((translate + s)) > ((countSlides * widthChild) - widthWrap))) {
+      s = -(((countSlides * widthChild) - widthWrap) + translate);
     }
     if ((translate + s) > 0) {
       s = -translate;
@@ -41,9 +42,10 @@ class FourthTask extends React.Component {
   handleClickRight = () => {
     const { translate } = this.state;
     const widthWrap = this._sliderWrapper.offsetWidth;
+    const widthChild = this._sliderWrapper.children[0].offsetWidth;
     let shift = 300;
-    if (((countSlides * 300) - (Math.abs(translate) + shift)) <= widthWrap) {
-      shift = (countSlides * 300) - widthWrap + translate;
+    if (((countSlides * widthChild) - (Math.abs(translate) + shift)) <= widthWrap) {
+      shift = (countSlides * widthChild) - widthWrap + translate;
     }
     this.setState({
       translate: translate - shift,
@@ -69,8 +71,9 @@ class FourthTask extends React.Component {
     const { translate } = this.state;
     let s = -e.deltaX;
     const widthWrap = this._sliderWrapper.offsetWidth;
-    if ((Math.abs((translate + s)) > ((countSlides * 300) - widthWrap))) {
-      s = -(((countSlides * 300) - widthWrap) + translate);
+    const widthChild = this._sliderWrapper.children[0].offsetWidth;
+    if ((Math.abs((translate + s)) > ((countSlides * widthChild) - widthWrap))) {
+      s = -(((countSlides * widthChild) - widthWrap) + translate);
     }
     if ((translate + s) > 0) {
       s = -translate;
@@ -102,31 +105,33 @@ class FourthTask extends React.Component {
 
     const { translate } = this.state;
     return (
-      <Swipeable
-        onSwiped={(eventData) => this.swipeEventHandler(eventData)}
-        {...config}
-      >
-        <div className={styles.slider}>
-          <div
-            className={styles.sliderWrapper}
-            ref={this.getSliderRef}
-            onWheel={this.scroll}
-            style={{
-              transform: `translateX(${translate}px)`,
-            }}
-          >
-            {slider}
+      <div className={styles.page}>
+        <Swipeable
+          onSwiped={(eventData) => this.swipeEventHandler(eventData)}
+          {...config}
+        >
+          <div className={styles.slider}>
+            <div
+              className={styles.sliderWrapper}
+              ref={this.getSliderRef}
+              onWheel={this.scroll}
+              style={{
+                transform: `translateX(${translate}px)`,
+              }}
+            >
+              {slider}
+            </div>
+            <div
+              className={`${styles.sliderControl} ${styles.sliderControlLeft}`}
+              onClick={this.handleClickLeft}
+            />
+            <div
+              className={`${styles.sliderControl} ${styles.sliderControlRight}`}
+              onClick={this.handleClickRight}
+            />
           </div>
-          <div
-            className={`${styles.sliderControl} ${styles.sliderControlLeft}`}
-            onClick={this.handleClickLeft}
-          />
-          <div
-            className={`${styles.sliderControl} ${styles.sliderControlRight}`}
-            onClick={this.handleClickRight}
-          />
-        </div>
-      </Swipeable>
+        </Swipeable>
+      </div>
     );
   }
 }
