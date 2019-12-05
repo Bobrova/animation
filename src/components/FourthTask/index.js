@@ -15,72 +15,53 @@ class FourthTask extends React.Component {
   updateDimensions = () => {
     const { translate } = this.state;
     const widthWrap = this._sliderWrapper.offsetWidth;
-    if (((countSlides * 300) - Math.abs(translate)) < widthWrap) {
-      const shift = widthWrap - ((countSlides * 300) - Math.abs(translate));
+    const widthChild = this._sliderWrapper.children[0].offsetWidth;
+    if (((countSlides * widthChild) - Math.abs(translate)) < widthWrap) {
+      const shift = widthWrap - ((countSlides * widthChild) - Math.abs(translate));
       this.setState({
         translate: translate + shift,
       });
     }
   }
 
-  scroll = (e) => {
+  getTranslate = (shift) => {
     const { translate } = this.state;
-    let s = e.deltaY || e.detail || e.wheelDelta;
+    let shiftTranslate = shift;
     const widthWrap = this._sliderWrapper.offsetWidth;
     const widthChild = this._sliderWrapper.children[0].offsetWidth;
-    if ((Math.abs((translate + s)) > ((countSlides * widthChild) - widthWrap))) {
-      s = -(((countSlides * widthChild) - widthWrap) + translate);
+    if (((countSlides * widthChild) - (Math.abs(translate) + shift)) <= widthWrap) {
+      shiftTranslate = (countSlides * widthChild) - widthWrap + translate;
     }
-    if ((translate + s) > 0) {
-      s = -translate;
+    if ((translate - shift) >= 0) {
+      shiftTranslate = translate;
     }
     this.setState({
-      translate: translate + s,
+      translate: translate - shiftTranslate,
     });
+  }
+
+  scroll = (e) => {
+    const shift = e.deltaY;
+    this.getTranslate(shift);
   }
 
   handleClickRight = () => {
-    const { translate } = this.state;
-    const widthWrap = this._sliderWrapper.offsetWidth;
-    const widthChild = this._sliderWrapper.children[0].offsetWidth;
-    let shift = 300;
-    if (((countSlides * widthChild) - (Math.abs(translate) + shift)) <= widthWrap) {
-      shift = (countSlides * widthChild) - widthWrap + translate;
-    }
-    this.setState({
-      translate: translate - shift,
-    });
+    const shift = 300;
+    this.getTranslate(shift);
   }
 
   handleClickLeft = () => {
-    const { translate } = this.state;
-    let shift = 300;
-    if ((translate + shift) >= 0) {
-      shift = Math.abs(translate);
-    }
-    this.setState({
-      translate: translate + shift,
-    });
+    const shift = -300;
+    this.getTranslate(shift);
+  }
+
+  swipeEventHandler = (e) => {
+    const shift = e.deltaX;
+    this.getTranslate(shift);
   }
 
   getSliderRef = node => {
     this._sliderWrapper = node;
-  }
-
-  swipeEventHandler = (e) => {
-    const { translate } = this.state;
-    let s = -e.deltaX;
-    const widthWrap = this._sliderWrapper.offsetWidth;
-    const widthChild = this._sliderWrapper.children[0].offsetWidth;
-    if ((Math.abs((translate + s)) > ((countSlides * widthChild) - widthWrap))) {
-      s = -(((countSlides * widthChild) - widthWrap) + translate);
-    }
-    if ((translate + s) > 0) {
-      s = -translate;
-    }
-    this.setState({
-      translate: translate + s,
-    });
   }
 
   render() {
@@ -107,7 +88,7 @@ class FourthTask extends React.Component {
     return (
       <div className={styles.page}>
         <Swipeable
-          onSwiped={(eventData) => this.swipeEventHandler(eventData)}
+          onSwiped={this.swipeEventHandler}
           {...config}
         >
           <div className={styles.slider}>
