@@ -5,9 +5,8 @@ import styles from './style.scss';
 
 class ListItem extends Component {
   state = {
-    widthPersonalBlock: '20%',
     opacity: '0',
-    borderRadius: '10px',
+    translate: '-20%',
   }
 
   componentDidMount() {
@@ -20,7 +19,7 @@ class ListItem extends Component {
     this.setState({
       widthPersonalBlock: Math.round((100 * steps) / maxSteps) * 0.8,
       opacity: '1',
-      borderRadius: '50px',
+      translate: 0,
     });
   }
 
@@ -32,11 +31,11 @@ class ListItem extends Component {
       id,
     } = this.props;
 
-    const { widthPersonalBlock, opacity, borderRadius } = this.state;
-    const stepsNamber = Math.round(+steps);
+    const { widthPersonalBlock, opacity, translate } = this.state;
+    const stepsNumber = Math.round(+steps);
     let color = '#236840';
-    if (stepsNamber > 12) color = '#2c827a';
-    if (stepsNamber < 8) color = '#b29e0a';
+    if (stepsNumber > 12) color = '#2c827a';
+    if (stepsNumber < 8) color = '#b29e0a';
 
     return (
       <div
@@ -46,8 +45,8 @@ class ListItem extends Component {
           className={styles.personBlock}
           style={{
             flexBasis: `${widthPersonalBlock}%`,
+            transform: `translateX(${translate})`,
             opacity,
-            borderRadius,
             background: color,
           }}
         >

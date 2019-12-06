@@ -9,8 +9,9 @@
 .personBlock {
   display: flex;
   flex-basis: 1px;
+  transform: translateX(-100%);
   line-height: 3.5em;
-  border-radius: 1px;
+  border-radius: 50px;
   margin-right: 10px;
   opacity: 0;
   transition: all 300ms ease;
