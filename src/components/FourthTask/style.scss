@@ -1,32 +1,11 @@
 .page {
-  width: 100%;
   box-sizing: border-box;
-}
-
-.slider {
-  width: 100%;
-}
-
-.sliderItem {
-  flex: 0 0 300px;
-  border: 1px solid black;
-  box-sizing: border-box;
-  height: 300px;
-  width: 300px;
-  background: blue;
-  transition: opacity 0.3s;
-}
-
-.sliderItem:hover {
-  opacity: 0.8;
-  cursor: pointer;
 }
 
 .slider {
   position: relative;
   width: 90%;
   margin: 50px auto;
-  border: 1px solid black;
   overflow: hidden;
 }
 
@@ -35,6 +14,18 @@
   justify-content: flex-start;
   align-items: center;
   transition: transform 0.5s linear;
+  box-sizing: border-box;
+}
+
+.sliderItem {
+  height: 300px;
+  width: 300px;
+  transition: opacity 0.3s;
+}
+
+.sliderItem:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .sliderControl {

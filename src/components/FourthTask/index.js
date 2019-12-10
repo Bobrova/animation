@@ -42,7 +42,12 @@ class FourthTask extends React.Component {
   }
 
   scroll = (e) => {
-    const shift = e.deltaY;
+    let shift = e.deltaY;
+    if (e.deltaY > 0) {
+      shift = 120;
+    } else {
+      shift = -120;
+    }
     this.getTranslate(shift);
   }
 
@@ -76,6 +81,7 @@ class FourthTask extends React.Component {
         }}
       >
         {item.title}
+        <img src="https://via.placeholder.com/300" alt="slide" />
       </div>
     ));
     const config = {
